@@ -1,3 +1,4 @@
+Inter ID: CITS6474
 Weather forecasting web application
 A simple weather forecasting web application built using **Python Flask**. It provides real-time weather information and a 7-day forecast using the **Open-Meteo API** without requiring an API key.
 
