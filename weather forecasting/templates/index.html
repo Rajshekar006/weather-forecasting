@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Forecast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="bg-orbs">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+
+  <main class="container">
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">🌤</span>
+        <div>
+          <h1>Weather Forecast</h1>
+          <p class="subtitle">7-day outlook for any place in the world</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="search-card">
+      <form id="search-form" class="search-form" autocomplete="off">
+        <div class="input-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input
+            type="text"
+            id="place-input"
+            name="place"
+            placeholder="Search any place (city, town, village, landmark…)"
+            autocomplete="off"
+            required
+          >
+          <ul id="suggestions" class="suggestions hidden" role="listbox"></ul>
+        </div>
+        <button type="submit" id="search-btn">
+          <span class="btn-text">Get Forecast</span>
+          <span class="btn-spinner hidden"></span>
+        </button>
+      </form>
+      <p class="hint">Cities, towns, villages, landmarks — or enter coordinates like <code>48.8566, 2.3522</code></p>
+    </section>
+
+    <div id="error-banner" class="error-banner hidden" role="alert"></div>
+
+    <section id="place-picker" class="place-picker hidden">
+      <h3>Multiple places found — choose one</h3>
+      <div id="place-options" class="place-options"></div>
+    </section>
+
+    <section id="results" class="results hidden">
+      <article class="current-card">
+        <div class="current-main">
+          <div class="location-block">
+            <h2 id="location-name"></h2>
+            <p id="location-meta" class="location-meta"></p>
+            <p id="current-time" class="current-time"></p>
+          </div>
+          <div class="temp-block">
+            <span id="current-icon" class="weather-icon"></span>
+            <div>
+              <p class="temp-value"><span id="current-temp"></span><span class="unit">°C</span></p>
+              <p id="current-label" class="weather-label"></p>
+            </div>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat">
+            <span class="stat-label">Feels like</span>
+            <span id="feels-like" class="stat-value"></span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Humidity</span>
+            <span id="humidity" class="stat-value"></span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Wind</span>
+            <span id="wind" class="stat-value"></span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Precipitation</span>
+            <span id="precipitation" class="stat-value"></span>
+          </div>
+        </div>
+      </article>
+
+      <section class="forecast-section">
+        <h3>7-Day Forecast</h3>
+        <div id="daily-forecast" class="daily-grid"></div>
+      </section>
+    </section>
+
+    <section id="empty-state" class="empty-state">
+      <div class="empty-icon">🌍</div>
+      <h2>Search for any place</h2>
+      <p>Enter a city, town, village, landmark, or coordinates to see current conditions and a 7-day forecast.</p>
+      <div class="quick-places">
+        <button type="button" class="quick-place" data-query="Paris, France">Paris</button>
+        <button type="button" class="quick-place" data-query="Mount Everest">Mount Everest</button>
+        <button type="button" class="quick-place" data-query="Santorini, Greece">Santorini</button>
+        <button type="button" class="quick-place" data-query="Kyoto, Japan">Kyoto</button>
+        <button type="button" class="quick-place" data-query="Rio de Janeiro">Rio de Janeiro</button>
+        <button type="button" class="quick-place" data-query="Grand Canyon">Grand Canyon</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
